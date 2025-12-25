@@ -1,0 +1,11 @@
+*.pdf diff=office
+*.doc diff=office
+*.docx diff=office
+*.odt diff=office
+*.xls diff=office
+*.xlsx diff=office
+*.ods diff=office
+*.ppt diff=office
+*.pptx diff=office
+*.odp diff=office
+*.epub diff=office

@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: '.'
+        env:
+
+  syntax-check:
+    name: Bash Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check syntax
+        run: |
+          for f in $(find . -maxdepth 1 -type f -not -path '*/.*'); do
+            if head -n1 "$f" | grep -q 'bash'; then
+              echo "Checking $f..."
+              bash -n "$f"
+            fi
+          done
