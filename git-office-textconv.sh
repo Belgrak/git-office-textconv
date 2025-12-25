@@ -40,9 +40,9 @@ case "$EXT" in
 
     doc)
         if has_cmd antiword; then
-            antiword "$FILEPATH"
+            antiword "$FILEPATH" 2>/dev/null || strings "$FILEPATH"
         elif has_cmd catdoc; then
-            catdoc "$FILEPATH"
+            catdoc "$FILEPATH" 2>/dev/null || strings "$FILEPATH"
         else
             echo "[WARN] antiword or catdoc not found."
         fi
